@@ -12,17 +12,16 @@ import java.util.List;
 @RequestMapping("convert")
 public class MyController {
 
+    UnitConverter converter = new UnitConverter();  // Create an instance of UnitConverter
+
     /*
-    * /convert/1/in/cm
-    *
-    * out put should be found in sample_out.json
-    * */
-
+     * Example: /convert/1/in/cm
+     */
     @GetMapping("/{value}/{unit1}/{unit2}/")
-    public String convert() {
-        return "";
+    public Map<String, Object> convert(@PathVariable double value,
+                                       @PathVariable String unit1,
+                                       @PathVariable String unit2) {
+        // Use the UnitConverter class for conversion logic
+        return converter.convertUnits(value, unit1, unit2);
     }
-
-    List<String> allowedUnits = Arrays.asList("mm","cm","in","m","ft");
-
 }
